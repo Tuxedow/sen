@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>省级水土保持信息化系统平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background-color: #1890ff;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .nav {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+        }
+        
+        .nav li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .nav a:hover, .nav a.active {
+            color: #1890ff;
+            background-color: #e6f7ff;
+        }
+        
+        .nav i {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #999;
+        }
+        
+        .nav a:hover i, .nav a.active i {
+            color: #1890ff;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-title {
+            color: #1890ff;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title h2 {
+            margin: 0;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 8px;
+            color: #1890ff;
+        }
+        
+        .section-title .more {
+            color: #999;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title .more i {
+            margin-left: 5px;
+            color: #999;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-color: #1890ff;
+            background-color: #f7faff;
+        }
+        
+        .feature-card:hover .feature-title {
+            color: #1890ff;
+        }
+        
+        .feature-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-title i {
+            margin-right: 8px;
+            color: #1890ff;
+            font-size: 14px;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .advantage-section {
+            background-color: white;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .advantage-title {
+            color: #1890ff;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .advantage-title i {
+            margin-right: 8px;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantage-card {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .advantage-icon {
+            font-size: 36px;
+            color: #1890ff;
+            margin-bottom: 15px;
+        }
+        
+        .advantage-name {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .advantage-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .market-section {
+            background-color: white;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .market-title {
+            color: #1890ff;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .market-title i {
+            margin-right: 8px;
+        }
+        
+        .market-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.75;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer {
+            background-color: #1890ff;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 4px;
+            width: 80%;
+            max-width: 1000px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        
+        .modal-header {
+            background-color: #1890ff;
+            color: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-body h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.75;
+            color: #666;
+        }
+        
+        .modal-body .map-container {
+            height: 400px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            background-color: #f9f9f9;
+        }
+        
+        .modal-body .map-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .modal-body .map-placeholder i {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-body .map-controls {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .modal-body .btn {
+            padding: 6px 12px;
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .modal-body .btn:hover {
+            background-color: #40a9ff;
+        }
+        
+        .modal-body .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .modal-body .gallery-item {
+            width: calc(33.33% - 7px);
+            height: 120px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .modal-body .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-body .chart {
+            height: 300px;
+            margin: 15px 0;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-wrap: wrap;
+            }
+            
+            .feature-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .advantage-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+    <!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- 引入ECharts图表库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>省级水土保持信息化系统平台</h1>
+        <p>专业、高效、智能的水土保持监测与管理系统</p>
+    </div>
+    
+    <div class="container">
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="#user" class="active">
+                        <i class="fas fa-users"></i>
+                        <span>用户管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#map-monitor">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>图上监测</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#monitor-indicators">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>监测指标</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#issues">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>问题与建议</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#color-evaluation">
+                        <i class="fas fa-palette"></i>
+                        <span>三色评价</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sensors">
+                        <i class="fas fa-microchip"></i>
+                        <span>传感器模块</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#reports">
+                        <i class="fas fa-file-alt"></i>
+                        <span>报告生成</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section" id="user">
+            <div class="section-title">
+                <h2><i class="fas fa-users"></i> 用户管理模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 主管部门与监测单位权限区分</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('user-registration')">
+                    <div class="feature-title"><i class="fas fa-user-plus"></i> 用户注册与登录</div>
+                    <div class="feature-desc">支持主管部门和监测单位分别注册和登录，具有不同的权限级别</div>
+                </div>
+                <div class="feature-card" onclick="showModal('permission-allocation')">
+                    <div class="feature-title"><i class="fas fa-lock"></i> 权限分配</div>
+                    <div class="feature-desc">管理员可为不同用户分配相应的操作权限，确保数据安全</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="map-monitor">
+            <div class="section-title">
+                <h2><i class="fas fa-map-marked-alt"></i> 图上监测模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 精准定位与可视化监测</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('monitoring-area')">
+                    <div class="feature-title"><i class="fas fa-map-marked"></i> 监测范围划定</div>
+                    <div class="feature-desc">在地图上直观划定监测区域，支持多种地图图层切换</div>
+                </div>
+                <div class="feature-card" onclick="showModal('monitoring-points')">
+                    <div class="feature-title"><i class="fas fa-map-pin"></i> 监测点位标注</div>
+                    <div class="feature-desc">精准标注监测点位，并可上传相关照片作为记录</div>
+                </div>
+                <div class="feature-card" onclick="showModal('conservation-measures')">
+                    <div class="feature-title"><i class="fas fa-tree"></i> 水土保持措施照片</div>
+                    <div class="feature-desc">上传水土保持措施实施前后对比照片，直观展示效果</div>
+                </div>
+                <div class="feature-card" onclick="showModal('historical-issues')">
+                    <div class="feature-title"><i class="fas fa-history"></i> 历史问题及整改记录</div>
+                    <div class="feature-desc">记录历史问题，上传整改照片，支持连续监测跟踪</div>
+                </div>
+                <div class="feature-card" onclick="showModal('drone-data')">
+                    <div class="feature-title"><i class="fas fa-drone"></i> 无人机数据集成</div>
+                    <div class="feature-desc">集成无人机拍摄的正射影像和三维模型数据，提供多维度分析</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="monitor-indicators">
+            <div class="section-title">
+                <h2><i class="fas fa-chart-bar"></i> 监测指标模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 全面数据记录与分析</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('disturbance-area')">
+                    <div class="feature-title"><i class="fas fa-exchange-alt"></i> 扰动面积监测</div>
+                    <div class="feature-desc">精确记录监测区域内土地扰动面积变化情况</div>
+                </div>
+                <div class="feature-card" onclick="showModal('soil-erosion-area')">
+                    <div class="feature-title"><i class="fas fa-water"></i> 水土流失面积监测</div>
+                    <div class="feature-desc">实时监测并记录水土流失面积，提供变化趋势分析</div>
+                </div>
+                <div class="feature-card" onclick="showModal('monitoring-methods')">
+                    <div class="feature-title"><i class="fas fa-tools"></i> 监测方法记录</div>
+                    <div class="feature-desc">选择并记录使用的监测方法，确保数据可追溯性</div>
+                </div>
+                <div class="feature-card" onclick="showModal('monitoring-data')">
+                    <div class="feature-title"><i class="fas fa-database"></i> 监测数据记录</div>
+                    <div class="feature-desc">详细记录每次监测的详细数据和现场情况</div>
+                </div>
+                <div class="feature-card" onclick="showModal('soil-erosion-amount')">
+                    <div class="feature-title"><i class="fas fa-tint"></i> 水土流失量计算</div>
+                    <div class="feature-desc">基于科学模型计算并记录水土流失量</div>
+                </div>
+                <div class="feature-card" onclick="showModal('conservation-progress')">
+                    <div class="feature-title"><i class="fas fa-chart-line"></i> 措施进度跟踪</div>
+                    <div class="feature-desc">跟踪水土保持措施的实施进度，确保项目按时完成</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="issues">
+            <div class="section-title">
+                <h2><i class="fas fa-exclamation-circle"></i> 存在问题及建议模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 问题管理与改进</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('issue-photos')">
+                    <div class="feature-title"><i class="fas fa-camera"></i> 问题照片上传</div>
+                    <div class="feature-desc">现场发现问题时，可立即上传照片作为证据</div>
+                </div>
+                <div class="feature-card" onclick="showModal('rectification-photos')">
+                    <div class="feature-title"><i class="fas fa-upload"></i> 整改照片上传</div>
+                    <div class="feature-desc">问题整改完成后，上传整改后的照片进行对比</div>
+                </div>
+                <div class="feature-card" onclick="showModal('improvement-suggestions')">
+                    <div class="feature-title"><i class="fas fa-lightbulb"></i> 改进建议记录</div>
+                    <div class="feature-desc">针对发现的问题，记录专业改进建议，指导后续工作</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="color-evaluation">
+            <div class="section-title">
+                <h2><i class="fas fa-palette"></i> 三色评价模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 科学评价体系</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('evaluation-scoring')">
+                    <div class="feature-title"><i class="fas fa-list-check"></i> 评价打分表</div>
+                    <div class="feature-desc">提供标准化的水土保持监测三色评价打分表</div>
+                </div>
+                <div class="feature-card" onclick="showModal('evaluation-results')">
+                    <div class="feature-title"><i class="fas fa-flag-checkered"></i> 自动评价结论</div>
+                    <div class="feature-desc">根据打分情况，系统自动生成三色评价结论</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="sensors">
+            <div class="section-title">
+                <h2><i class="fas fa-microchip"></i> 传感器模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 智能监测设备集成</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('video-surveillance')">
+                    <div class="feature-title"><i class="fas fa-video"></i> 4G视频监控</div>
+                    <div class="feature-desc">实时查看监测区域的高清视频监控，支持回放</div>
+                </div>
+                <div class="feature-card" onclick="showModal('drone-operation')">
+                    <div class="feature-title"><i class="fas fa-drone"></i> 无人机调用</div>
+                    <div class="feature-desc">远程控制无人机进行定期或临时监测任务</div>
+                </div>
+                <div class="feature-card" onclick="showModal('dji-airport')">
+                    <div class="feature-title"><i class="fas fa-plane-arrival"></i> 大疆机场集成</div>
+                    <div class="feature-desc">与大疆机场设备无缝对接，实现无人机自动巡检</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="reports">
+            <div class="section-title">
+                <h2><i class="fas fa-file-alt"></i> 报告生成模块</h2>
+                <span class="more"><i class="fas fa-info-circle"></i> 高效报告输出</span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" onclick="showModal('report-generation')">
+                    <div class="feature-title"><i class="fas fa-file-export"></i> 一键生成报告</div>
+                    <div class="feature-desc">根据监测数据自动生专业化的水土保持监测报告</div>
+                </div>
+                <div class="feature-card" onclick="showModal('report-export')">
+                    <div class="feature-title"><i class="fas fa-share-alt"></i> 报告导出与分享</div>
+                    <div class="feature-desc">支持多种格式导出，并具备在线分享功能，方便协作</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="advantage-section">
+            <div class="advantage-title">
+                <i class="fas fa-star"></i> 平台优势
+            </div>
+            <div class="advantage-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="advantage-name">实时监测</div>
+                    <div class="advantage-desc">结合传感器和无人机技术，实现24小时不间断实时监测</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="advantage-name">数据可视化</div>
+                    <div class="advantage-desc">通过地图展示、图表分析等多种方式直观呈现监测数据</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="advantage-name">高效管理</div>
+                    <div class="advantage-desc">统一管理监测数据、问题和整改记录，显著提高工作效率</div>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="advantage-name">智能评价</div>
+                    <div class="advantage-desc">基于大数据和人工智能技术实现科学的三色评价体系</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="market-section">
+            <div class="market-title">
+                <i class="fas fa-bullhorn"></i> 市场推广前景
+            </div>
+            <div class="market-content">
+                本平台专为省级水土保持主管部门和专业监测单位设计开发，具有广阔的市场应用前景。通过与行业领先无人机厂商如大疆公司的深度合作，能够进一步拓展市场份额，构建完善的行业代理与服务网络，为全国水土保持工作提供强有力的技术支持。
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>省级水土保持信息化系统平台</p>
+        <p>Copyright © 2023 版权所有</p>
+    </div>
+    
+    <!-- 模态框 -->
+    <div class="modal" id="featureModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">功能详情</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 模态框内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 滚动平滑效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // 更新活动导航项
+                document.querySelectorAll('.nav a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // 显示模态框
+        function showModal(featureId) {
+            const modal = document.getElementById('featureModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            // 根据功能ID设置模态框内容
+            let content = '';
+            let title = '';
+            
+            switch(featureId) {
+                case 'user-registration':
+                    title = '用户注册与登录';
+                    content = `
+                        <h3>用户注册与登录</h3>
+                        <p>支持主管部门和监测单位分别注册和登录，具有不同的权限级别。</p>
+                        <img src="https://via.placeholder.com/600x300?text=用户注册与登录界面" alt="用户注册与登录">
+                        <p>提供安全的认证机制，支持多因素认证，确保系统使用安全。</p>
+                    `;
+                    break;
+                case 'permission-allocation':
+                    title = '权限分配';
+                    content = `
+                        <h3>权限分配</h3>
+                        <p>管理员可为不同用户分配相应的操作权限，确保数据安全。</p>
+                        <img src="https://via.placeholder.com/600x300?text=权限分配界面" alt="权限分配">
+                        <p>细粒度的权限控制，支持功能级和数据级权限设置。</p>
+                    `;
+                    break;
+                case 'monitoring-area':
+                    title = '监测范围划定';
+                    content = `
+                        <h3>监测范围划定</h3>
+                        <p>在地图上直观划定监测区域，支持多种地图图层切换。</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <div>监测区域地图展示</div>
+                                <div class="map-controls">
+                                    <button class="btn">绘制区域</button>
+                                    <button class="btn">清除绘制</button>
+                                    <button class="btn">导出区域数据</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p>支持GIS地图操作，可绘制多边形、圆形等监测区域。</p>
+                    `;
+                    break;
+                case 'monitoring-points':
+                    title = '监测点位标注';
+                    content = `
+                        <h3>监测点位标注</h3>
+                        <p>精准标注监测点位，并可上传相关照片作为记录。</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-pin"></i>
+                                <div>监测点位地图展示</div>
+                                <div class="map-controls">
+                                    <button class="btn">标注点位</button>
+                                    <button class="btn">上传照片</button>
+                                    <button class="btn">导出点位数据</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p>支持批量导入和导出监测点位数据。</p>
+                    `;
+                    break;
+                case 'conservation-measures':
+                    title = '水土保持措施照片';
+                    content = `
+                        <h3>水土保持措施照片</h3>
+                        <p>上传水土保持措施实施前后对比照片，直观展示效果。</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-tree"></i>
+                                <div>水土保持措施地图展示</div>
+                                <div class="map-controls">
+                                    <button class="btn">上传照片</button>
+                                    <button class="btn">查看历史照片</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-gallery">
+                            <div class="gallery-item"></div>
+                            <div class="gallery-item"></div>
+                            <div class="gallery-item"></div>
+                        </div>
+                        <p>支持照片标注和分类管理，方便查阅历史记录。</p>
+                    `;
+                    break;
+                case 'historical-issues':
+                    title = '历史问题及整改记录';
+                    content = `
+                        <h3>历史问题及整改记录</h3>
+                        <p>记录历史问题，上传整改照片，支持连续监测跟踪。</p>
+                        <img src="https://via.placeholder.com/600x300?text=历史问题及整改记录" alt="历史问题及整改记录">
+                        <p>提供问题跟踪流程，确保每个问题得到有效解决。</p>
+                    `;
+                    break;
+                case 'drone-data':
+                    title = '无人机数据集成';
+                    content = `
+                        <h3>无人机数据集成</h3>
+                        <p>集成无人机拍摄的正射影像和三维模型数据，提供多维度分析。</p>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-drone"></i>
+                                <div>无人机数据地图展示</div>
+                                <div class="map-controls">
+                                    <button class="btn">加载正射影像</button>
+                                    <button class="btn">加载三维模型</button>
+                                    <button class="btn">查看飞行轨迹</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p>支持多种无人机数据格式导入和处理。</p>
+                    `;
+                    break;
+                case 'disturbance-area':
+                    title = '扰动面积监测';
+                    content = `
+                        <h3>扰动面积监测</h3>
+                        <p>精确记录监测区域内土地扰动面积变化情况。</p>
+                        <div class="chart">扰动面积变化趋势图表</div>
+                        <p>提供面积变化的时空分析功能。</p>
+                    `;
+                    break;
+                case 'soil-erosion-area':
+                    title = '水土流失面积监测';
+                    content = `
+                        <h3>水土流失面积监测</h3>
+                        <p>实时监测并记录水土流失面积，提供变化趋势分析。</p>
+                        <div class="chart">水土流失面积变化图表</div>
+                        <p>结合地形和气象数据，预测水土流失风险。</p>
+                    `;
+                    break;
+                case 'monitoring-methods':
+                    title = '监测方法记录';
+                    content = `
+                        <h3>监测方法记录</h3>
+                        <p>选择并记录使用的监测方法，确保数据可追溯性。</p>
+                        <img src="https://via.placeholder.com/600x300?text=监测方法记录" alt="监测方法记录">
+                        <p>支持自定义监测方法和模板创建。</p>
+                    `;
+                    break;
+                case 'monitoring-data':
+                    title = '监测数据记录';
+                    content = `
+                        <h3>监测数据记录</h3>
+                        <p>详细记录每次监测的详细数据和现场情况。</p>
+                        <img src="https://via.placeholder.com/600x300?text=监测数据记录" alt="监测数据记录">
+                        <p>支持数据的批量导入和导出，方便数据管理。</p>
+                    `;
+                    break;
+                case 'soil-erosion-amount':
+                    title = '水土流失量计算';
+                    content = `
+                        <h3>水土流失量计算</h3>
+                        <p>基于科学模型计算并记录水土流失量。</p>
+                        <div class="chart">水土流失量计算图表</div>
+                        <p>提供多种计算模型，支持模型参数自定义。</p>
+                    `;
+                    break;
+                case 'conservation-progress':
+                    title = '措施进度跟踪';
+                    content = `
+                        <h3>措施进度跟踪</h3>
+                        <p>跟踪水土保持措施的实施进度，确保项目按时完成。</p>
+                        <div class="chart">措施进度跟踪图表</div>
+                        <p>提供进度预警功能，及时发现滞后项目。</p>
+                    `;
+                    break;
+                case 'issue-photos':
+                    title = '问题照片上传';
+                    content = `
+                        <h3>问题照片上传</h3>
+                        <p>现场发现问题时，可立即上传照片作为证据。</p>
+                        <img src="https://via.placeholder.com/600x300?text=问题照片上传" alt="问题照片上传">
+                        <p>支持照片地理位置标记，方便定位问题。</p>
+                    `;
+                    break;
+                case 'rectification-photos':
+                    title = '整改照片上传';
+                    content = `
+                        <h3>整改照片上传</h3>
+                        <p>问题整改完成后，上传整改后的照片进行对比。</p>
+                        <img src="https://via.placeholder.com/600x300?text=整改照片上传" alt="整改照片上传">
+                        <p>支持前后对比查看，直观展示整改效果。</p>
+                    `;
+                    break;
+                case 'improvement-suggestions':
+                    title = '改进建议记录';
+                    content = `
+                        <h3>改进建议记录</h3>
+                        <p>针对发现的问题，记录专业改进建议，指导后续工作。</p>
+                        <img src="https://via.placeholder.com/600x300?text=改进建议记录" alt="改进建议记录">
+                        <p>支持建议的分类管理和优先级设置。</p>
+                    `;
+                    break;
+                case 'evaluation-scoring':
+                    title = '评价打分表';
+                    content = `
+                        <h3>评价打分表</h3>
+                        <p>提供标准化的水土保持监测三色评价打分表。</p>
+                        <img src="https://via.placeholder.com/600x300?text=评价打分表" alt="评价打分表">
+                        <p>支持自定义评价指标和权重设置。</p>
+                    `;
+                    break;
+                case 'evaluation-results':
+                    title = '自动评价结论';
+                    content = `
+                        <h3>自动评价结论</h3>
+                        <p>根据打分情况，系统自动生成三色评价结论。</p>
+                        <img src="https://via.placeholder.com/600x300?text=自动评价结论" alt="自动评价结论">
+                        <p>提供评价结果的可视化展示和历史趋势分析。</p>
+                    `;
+                    break;
+                case 'video-surveillance':
+                    title = '4G视频监控';
+                    content = `
+                        <h3>4G视频监控</h3>
+                        <p>实时查看监测区域的高清视频监控，支持回放。</p>
+                        <img src="https://via.placeholder.com/600x300?text=4G视频监控" alt="4G视频监控">
+                        <p>支持多摄像头管理，可设置监控区域和告警规则。</p>
+                    `;
+                    break;
+                case 'drone-operation':
+                    title = '无人机调用';
+                    content = `
+                        <h3>无人机调用</h3>
+                        <p>远程控制无人机进行定期或临时监测任务。</p>
+                        <img src="https://via.placeholder.com/600x300?text=无人机调用" alt="无人机调用">
+                        <p>支持飞行路径规划和自动数据采集。</p>
+                    `;
+                    break;
+                case 'dji-airport':
+                    title = '大疆机场集成';
+                    content = `
+                        <h3>大疆机场集成</h3>
+                        <p>与大疆机场设备无缝对接，实现无人机自动巡检。</p>
+                        <img src="https://via.placeholder.com/600x300?text=大疆机场集成" alt="大疆机场集成">
+                        <p>支持多架无人机的集中管理和任务调度。</p>
+                    `;
+                    break;
+                case 'report-generation':
+                    title = '一键生成报告';
+                    content = `
+                        <h3>一键生成报告</h3>
+                        <p>根据监测数据自动生专业化的水土保持监测报告。</p>
+                        <img src="https://via.placeholder.com/600x300?text=一键生成报告" alt="一键生成报告">
+                        <p>报告模板可自定义，满足不同场景需求。</p>
+                    `;
+                    break;
+                case 'report-export':
+                    title = '报告导出与分享';
+                    content = `
+                        <h3>报告导出与分享</h3>
+                        <p>支持多种格式导出，并具备在线分享功能，方便协作。</p>
+                        <img src="https://via.placeholder.com/600x300?text=报告导出与分享" alt="报告导出与分享">
+                        <p>支持PDF、Word、Excel等多种格式导出。</p>
+                    `;
+                    break;
+                default:
+                    title = '功能详情';
+                    content = '<p>该功能的详细信息暂未提供。</p>';
+            }
+            
+            document.querySelector('.modal-title').textContent = title;
+            modalBody.innerHTML = content;
+            
+            modal.style.display = 'flex';
+        }
+        
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('featureModal').style.display = 'none';
+        }
+        
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('featureModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
